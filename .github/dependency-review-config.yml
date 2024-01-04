@@ -1,14 +1,1 @@
 fail_on_severity: 'high'
-vulnerability_check: 'true'
-comment_summary_in_pr: 'always'
-license_check: 'false'
-  
-#allow_licenses:
-#deny_licenses:
-#allow_dependencies_licenses: 
-#deny_packages: 
-#deny_groups: 
-#
-#fail_on_scopes:
-#retry_on_snapshot_warnings:
-#retry_on_snapshot_warnings_timeout:
