@@ -21,6 +21,5 @@ jobs:
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v3
         with:
-          fail-on-severity: 'critical'
-          #config-file: 'theztefan-enterprise-test/dependency-review-config/.github/dependency-review-config.yml@main'
+          config-file: 'theztefan-enterprise-test/dependency-review-config/.github/dependency-review-config.yml@main'
           #external-repo-token: ${{ secrets.SEARCH }}
