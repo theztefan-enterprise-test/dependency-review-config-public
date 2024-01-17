@@ -1,1 +1,3 @@
 fail-on-severity: 'critical'
+deny-licenses: LGPL-2.0, BSD-2-Clause
+comment-summary-in-pr: always
