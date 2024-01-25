@@ -24,7 +24,8 @@ jobs:
         with:
           app-id: ${{ secrets.GHAS_APP_ID }}
           private-key: ${{ secrets.GHAS_APP_KEY }}
-          owner: ${{ github.repository_owner }}
+          #owner: ${{ github.repository_owner }}
+          owner: theztefan-enterprise-test
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v3
         with:
