@@ -26,7 +26,7 @@ jobs:
           private-key: ${{ secrets.GHAS_APP_KEY }}
           owner: ${{ github.repository_owner }}
           #repository: dependency-review-config
-          repository: ${{ github.repository }}
+          repositories: ${{ github.repository }}
           
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v3
