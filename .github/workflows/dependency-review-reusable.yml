@@ -28,4 +28,5 @@ jobs:
         uses: actions/dependency-review-action@v3
         with:
           config-file: 'theztefan-enterprise-test/dependency-review-config/.github/dependency-review-config.yml@main'
-          external-repo-token: ${{ steps.app-token.outputs.token }}
+          #external-repo-token: ${{ steps.app-token.outputs.token }}
+          external-repo-token: ${{ env.GITHUB_TOKEN }}
