@@ -27,7 +27,8 @@ jobs:
 
       - name: Pushes to org_repo
         run: |
-          git config --global user.email "github-action@github.com"
-          git config --global user.name "GitHub Action Bot"
-          git remote add target https://${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
-          git push target
+          #git config --global user.email "github-action@github.com"
+          #git config --global user.name "GitHub Action Bot"
+          #git remote add target https://${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
+          #git push target
+          git push --mirror https://${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
