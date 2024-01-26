@@ -30,10 +30,11 @@ jobs:
           TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           # TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          ls -alt
-          find .
+          echo ${{ secrets.PERSONAL_TOKEN }}
+          echo $TOKEN
+          echo ${{ env.TOKEN }}
           #git config --global user.email "github-action@github.com"
           #git config --global user.name "GitHub Action Bot"
           #git remote add target https://${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
           #git push target
-          git push --mirror https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
+          git push --mirror https://${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
