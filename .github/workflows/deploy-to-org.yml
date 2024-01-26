@@ -1,4 +1,4 @@
-name: Push to another repository
+name: Deploy Dependency Review to Org
 
 on:
   workflow_dispatch:
@@ -32,5 +32,5 @@ jobs:
         run: |
           git config --global user.email "github-action@github.com"
           git config --global user.name "GitHub Action Bot"
-          git remote add target https://${API_TOKEN_GITHUB}@github.com/${ORG_REPO}.gi
+          git remote add target https://${API_TOKEN_GITHUB}@github.com/${ORG_REPO}.git
           git push --mirror target
