@@ -30,6 +30,8 @@ jobs:
           TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           # TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
+          ls -alt
+          find .
           #git config --global user.email "github-action@github.com"
           #git config --global user.name "GitHub Action Bot"
           #git remote add target https://${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
