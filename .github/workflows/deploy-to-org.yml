@@ -36,4 +36,4 @@ jobs:
           #git config --global user.name "GitHub Action Bot"
           #git remote add target https://${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
           #git push target
-          git push --mirror https://${{ env.TOKEN }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
+          git push --mirror https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
