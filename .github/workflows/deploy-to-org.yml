@@ -1,0 +1,36 @@
+name: Push to another repository
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'The repository to push to'
+        required: true
+      org:
+        description: 'The organization to push to'
+        required: true
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.GHAS_APP_ID }}
+          private-key: ${{ secrets.GHAS_APP_KEY }}
+          owner: ${{ github.event.inputs.org }}
+          repositories: ${{ github.event.inputs.repo }}
+
+      - name: Pushes to org_repo
+        env:
+          API_TOKEN_GITHUB: ${{ steps.app-token.outputs.token }}  # Use the output from the `app-token` step
+          ORG_REPO: ${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
+        run: |
+          git config --global user.email "github-action@github.com"
+          git config --global user.name "GitHub Action Bot"
+          git remote add target https://${API_TOKEN_GITHUB}@github.com/${ORG_REPO}.gi
+          git push --mirror target
