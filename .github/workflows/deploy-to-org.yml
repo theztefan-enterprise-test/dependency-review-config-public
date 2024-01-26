@@ -26,12 +26,8 @@ jobs:
           repositories: ${{ github.event.inputs.repo }}
 
       - name: Pushes to org_repo
-        env:
-          API_TOKEN_GITHUB: ${{ steps.app-token.outputs.token }}  # Use the output from the `app-token` step
-          ORG_REPO: ${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
         run: |
           git config --global user.email "github-action@github.com"
           git config --global user.name "GitHub Action Bot"
-          git remote add target https://${API_TOKEN_GITHUB}@github.com/${ORG_REPO}.git
+          git remote add target https://${{ steps.app-token.outputs.token }} @github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
           git push target
-          
