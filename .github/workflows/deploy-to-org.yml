@@ -27,12 +27,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PERSONAL_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
         
       - name: Pushes to org_repo
         env:
-          TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          # TOKEN: ${{ steps.app-token.outputs.token }}
+          #TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           echo ${{ secrets.PERSONAL_TOKEN }}
           echo $TOKEN
@@ -42,11 +42,11 @@ jobs:
           git config --global push.autoSetupRemote true
           #git remote add target https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
           #git push -u target main
-          
           #git remote add target https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
           #git remote add target https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
           #git push target
-          #export GITHUB_TOKEN=
-          git push --mirror https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
+
+          git push --mirror https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
+
           #git push --mirror https://github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
           
