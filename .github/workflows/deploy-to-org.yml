@@ -34,7 +34,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.app-token-target.outputs.token }}
+          token: ${{ steps.app-token-source.outputs.token }}
           #token: ${{ secrets.PERSONAL_TOKEN }}
         
       - name: Pushes to org_repo
