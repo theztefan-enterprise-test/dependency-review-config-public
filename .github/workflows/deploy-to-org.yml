@@ -21,7 +21,7 @@ jobs:
           app-id: ${{ secrets.GHAS_APP_ID }}
           private-key: ${{ secrets.GHAS_APP_KEY }}
           owner: ${{ github.event.inputs.org }}
-          repositories: ${{ github.event.inputs.repo }}
+          repositories: "${{ github.event.inputs.repo }}, theztefan-enterprise-test/dependency-review-config"
 
       
       - name: Checkout repository
