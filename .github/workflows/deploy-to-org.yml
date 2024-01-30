@@ -38,8 +38,8 @@ jobs:
         
       - name: Pushes to org_repo
         env:
-          #TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          TOKEN: ${{ steps.app-token-target.outputs.token }}
+          TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          #TOKEN: ${{ steps.app-token-target.outputs.token }}
         run: |
           echo ${{ secrets.PERSONAL_TOKEN }}
           echo $TOKEN
