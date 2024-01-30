@@ -16,23 +16,30 @@ jobs:
     steps:
 
       - uses: actions/create-github-app-token@v1
-        id: app-token
+        id: app-token-source
+        with:
+          app-id: ${{ secrets.GHAS_APP_ID }}
+          private-key: ${{ secrets.GHAS_APP_KEY }}
+          owner: theztefan-enterprise-test
+          repositories: dependency-review-config
+
+      - uses: actions/create-github-app-token@v1
+        id: app-token-target
         with:
           app-id: ${{ secrets.GHAS_APP_ID }}
           private-key: ${{ secrets.GHAS_APP_KEY }}
           owner: ${{ github.event.inputs.org }}
-          repositories: "${{ github.event.inputs.repo }}, theztefan-enterprise-test/dependency-review-config"
-
+          repositories: ${{ github.event.inputs.repo }}
       
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.app-token.outputs.token }}
+          token: ${{ steps.app-token-source.outputs.token }}
         
       - name: Pushes to org_repo
         env:
           #TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          TOKEN: ${{ steps.app-token.outputs.token }}
+          TOKEN: ${{ steps.app-token-target.outputs.token }}
         run: |
           echo ${{ secrets.PERSONAL_TOKEN }}
           echo $TOKEN
@@ -46,7 +53,7 @@ jobs:
           #git remote add target https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
           #git push target
 
-          git push --mirror https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
+          git push --mirror https://${TOKEN}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
 
           #git push --mirror https://github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
           
