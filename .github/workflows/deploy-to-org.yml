@@ -34,16 +34,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.app-token-source.outputs.token }}
+          #token: ${{ steps.app-token-source.outputs.token }}
+          token: ${{ secrets.PERSONAL_TOKEN }}
         
       - name: Pushes to org_repo
         env:
           TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           #TOKEN: ${{ steps.app-token-target.outputs.token }}
         run: |
-          echo ${{ secrets.PERSONAL_TOKEN }}
-          echo $TOKEN
-          echo ${{ env.TOKEN }}
           git config --global user.email "github-action@github.com"
           git config --global user.name "GitHub Action Bot"
           git config --global push.autoSetupRemote true
@@ -55,5 +53,4 @@ jobs:
 
           git push --mirror https://${TOKEN}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
 
-          #git push --mirror https://github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
           
