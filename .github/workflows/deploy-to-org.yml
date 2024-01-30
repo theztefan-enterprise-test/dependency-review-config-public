@@ -40,9 +40,9 @@ jobs:
           git config --global user.email "github-action@github.com"
           git config --global user.name "GitHub Action Bot"
           #git remote add target https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
-          git remote add target https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
-          git push target
+          #git remote add target https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
+          #git push target
           #export GITHUB_TOKEN=
-          #git push --mirror https://${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
+          git push --mirror https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
           #git push --mirror https://github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
           
