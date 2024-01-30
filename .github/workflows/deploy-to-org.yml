@@ -38,7 +38,7 @@ jobs:
         
       - name: Pushes to org_repo
         env:
-          $TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          #TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           TOKEN: ${{ steps.app-token-target.outputs.token }}
         run: |
           git config --global user.email "github-action@github.com"
@@ -50,6 +50,6 @@ jobs:
           #git remote add target https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
           #git push target
 
-          git push --mirror https://${TOKEN}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
+          git push --mirror https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
 
           
