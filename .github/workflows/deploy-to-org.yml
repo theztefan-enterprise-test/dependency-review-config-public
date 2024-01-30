@@ -39,6 +39,7 @@ jobs:
           echo ${{ env.TOKEN }}
           git config --global user.email "github-action@github.com"
           git config --global user.name "GitHub Action Bot"
+          git config --global push.autoSetupRemote true
           git remote add target https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
           git push -u target main
           
