@@ -30,26 +30,20 @@ jobs:
           private-key: ${{ secrets.GHAS_APP_KEY }}
           owner: ${{ github.event.inputs.org }}
           repositories: ${{ github.event.inputs.repo }}
-      
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ steps.app-token-source.outputs.token }}
         
       - name: Pushes to org_repo
         env:
-          #TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          TOKEN: ${{ steps.app-token-target.outputs.token }}
+          SOURCE_TOKEN: ${{ steps.app-token-source.outputs.token }}
+          TARGET_TOKEN: ${{ steps.app-token-target.outputs.token }}
         run: |
           git config --global user.email "github-action@github.com"
           git config --global user.name "GitHub Action Bot"
           git config --global push.autoSetupRemote true
-          #git remote add target https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
-          #git push -u target main
-          #git remote add target https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
-          git remote add target https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
-          git push target
 
-          git push --mirror https://$TOKEN@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}
+          git clone https://x-access-token:${SOURCE_TOKEN}@github.com/theztefan-enterprise-test/dependency-review-config .
+
+          git remote add target https://x-access-token:${TARGET_TOKEN}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
+          
+          git push target
 
           
