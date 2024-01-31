@@ -50,8 +50,9 @@ jobs:
           TARGET_TOKEN: ${{ steps.app-token-target.outputs.token }}
         run: |
           git config --unset http.https://github.com/.extraheader
-          git remote add target https://x-access-token:${TARGET_TOKEN}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
-          git push target
+          git push --mirror https://x-access-token:${TARGET_TOKEN}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
+          #git remote add target https://x-access-token:${TARGET_TOKEN}@github.com/${{ github.event.inputs.org }}/${{ github.event.inputs.repo }}.git
+          #git push target
 
           
 
