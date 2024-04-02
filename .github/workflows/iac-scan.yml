@@ -8,6 +8,10 @@ on:
         type: string
         default: "."
 
+
+permissions:
+  security-events: write
+
 jobs:
   scan:
     name: Scan
